@@ -1,6 +1,7 @@
 import {RouteI} from "../RouteI";
 import LoginPage from "../../pages/LoginPage";
 import {Route} from "react-router-dom";
+import DashboardPage from "../../pages/DashboardPage";
 
 export const LOGIN_PATH = '/'
 
@@ -11,6 +12,12 @@ const publicRoutes: RouteI[] = [
         element: <LoginPage />,
         name: 'login'
     },
+    {
+        key: 'dashboard',
+        path: '/dashboard',
+        element: <DashboardPage />,
+        name: 'dashboard'
+    }
 ]
 
 export const publicRouter = publicRoutes.map((route: RouteI) => {
