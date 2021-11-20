@@ -1,6 +1,5 @@
 import {applyMiddleware, compose, createStore} from "redux";
 import createSagaMiddleware from 'redux-saga';
-import {routerMiddleware} from "connected-react-router";
 import {createReducer} from "./reducers/reducers";
 import {persistStore, persistReducer} from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
@@ -27,7 +26,7 @@ export const configureStore = (initialState = {}, history: any) => {
         }
     }
     const sagaMiddleware = createSagaMiddleware(reduxSagaMonitorOptions);
-    const middlewares = [sagaMiddleware, routerMiddleware(history)];
+    const middlewares = [sagaMiddleware];
     const enhancers = [applyMiddleware(...middlewares)];
 
     const persistedReducer = persistReducer(persistConfig, createReducer())
