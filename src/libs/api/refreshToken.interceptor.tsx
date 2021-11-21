@@ -57,8 +57,8 @@ export async function refreshTokenInterceptorError(error: AxiosError) {
                 }
             })
             store.store.dispatch(userLoggedWithRefreshToken(accessToken, refreshToken));
-            store.store.dispatch(onGetTarificationsCfgSuccess(tarifications));
-            store.store.dispatch(onGetCoursesCfgSuccess(courses));
+            store.store.dispatch(onGetTarificationsCfgSuccess(tarifications.data));
+            store.store.dispatch(onGetCoursesCfgSuccess(courses.data));
 
             onAccessTokenFetched(accessToken);
             console.log(retryOriginalRequest);
