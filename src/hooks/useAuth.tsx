@@ -12,11 +12,11 @@ const useAuth = () => {
     const location = useLocation();
     const navigate = useNavigate();
     useEffect(() => {
-        if (!user && PROTECTED_ROUTE.includes(location.pathname)) {
-            navigate(LOGIN_PATH);
+        if (user === null && PROTECTED_ROUTE.includes(location.pathname)) {
+            return navigate(LOGIN_PATH);
         }
-        if (user && ANONYMOUS_ROUTE.includes(location.pathname)) {
-            navigate(DASHBOARD_PATH);
+        if (user !== null && ANONYMOUS_ROUTE.includes(location.pathname)) {
+            return navigate(DASHBOARD_PATH);
         }
     }, [user, location.pathname, navigate])
 }
