@@ -7,6 +7,10 @@ import {
     userTryToLoginWithRefreshToken
 } from "../../store/actions/globalActions";
 import {store} from "../../store/store";
+import {GET_PROJECTS, GET_TARIFICATION_LEVELS} from "./endpoints";
+import CfgTarification from "../../models/CfgTarification";
+import CfgCategoryCourse from "../../models/CfgCategoryCourse";
+import {onGetCoursesCfgSuccess, onGetTarificationsCfgSuccess} from "../../pages/LoginPage/actions";
 
 let subscribers: any = [];
 
@@ -32,8 +36,32 @@ export async function refreshTokenInterceptorError(error: AxiosError) {
             );
             const accessToken = response.data.token;
             const refreshToken = response.data.refresh_token;
+            const tarifications = await PricingApi.get(
+                {
+                    url: GET_TARIFICATION_LEVELS,
+                    model: CfgTarification,
+                    config: {
+                        headers: {
+                            Authorization: accessToken
+                        }
+                    }
+                }
+            )
+            const courses = await PricingApi.get({
+                url: GET_PROJECTS,
+                model: CfgCategoryCourse,
+                config: {
+                    headers: {
+                        Authorization: accessToken
+                    }
+                }
+            })
             store.store.dispatch(userLoggedWithRefreshToken(accessToken, refreshToken));
+            store.store.dispatch(onGetTarificationsCfgSuccess(tarifications));
+            store.store.dispatch(onGetCoursesCfgSuccess(courses));
+
             onAccessTokenFetched(accessToken);
+            console.log(retryOriginalRequest);
 
             return retryOriginalRequest;
         } catch (e) {
