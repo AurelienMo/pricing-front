@@ -4,7 +4,7 @@ import {
     SUBMIT_REFRESH_TOKEN, SUBMIT_REFRESH_TOKEN_ERROR,
     TOGGLE_LOADING
 } from "../constants/globalConstants";
-import {GET_TARIFICATIONS_SUCCESS} from "../constants/configurationConstants";
+import {GET_CFG_CATEGORY_COURSE_SUCCESS} from "../constants/configurationConstants";
 
 export interface GlobalInitialStateI {
     loading: boolean,
@@ -43,7 +43,7 @@ export const globalReducer = (state: GlobalInitialStateI = globalInitialState, a
                 ...state,
                 loading: false
             }
-        case GET_TARIFICATIONS_SUCCESS:
+        case GET_CFG_CATEGORY_COURSE_SUCCESS:
             return {
                 ...state,
                 loading: false

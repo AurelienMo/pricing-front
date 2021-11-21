@@ -1,7 +1,11 @@
 import {LOGIN_ERROR, LOGIN_SUCCESS, SUBMIT_LOGIN} from "../../store/constants/globalConstants";
 import AuthModel from "./AuthModel";
-import {GET_TARIFICATIONS_SUCCESS} from "../../store/constants/configurationConstants";
+import {
+    GET_CFG_CATEGORY_COURSE_SUCCESS,
+    GET_TARIFICATIONS_SUCCESS
+} from "../../store/constants/configurationConstants";
 import CfgTarification from "../../models/CfgTarification";
+import CfgCategoryCourse from "../../models/CfgCategoryCourse";
 
 export interface ModelAuthActionI {
     type: string,
@@ -37,5 +41,12 @@ export function onGetTarificationsCfgSuccess(data: CfgTarification) {
     return {
         type: GET_TARIFICATIONS_SUCCESS,
         tarifications: data
+    }
+}
+
+export function onGetCoursesCfgSuccess(data: CfgCategoryCourse[]) {
+    return {
+        type: GET_CFG_CATEGORY_COURSE_SUCCESS,
+        categories: data
     }
 }
