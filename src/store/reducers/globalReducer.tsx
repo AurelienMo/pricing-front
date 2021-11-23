@@ -1,10 +1,9 @@
 import {
-    LOGIN_ERROR,
+    LOGIN_ERROR, ME_INFORMATIONS_SUCCESS,
     SUBMIT_LOGIN,
     SUBMIT_REFRESH_TOKEN, SUBMIT_REFRESH_TOKEN_ERROR,
     TOGGLE_LOADING
 } from "../constants/globalConstants";
-import {GET_CFG_CATEGORY_COURSE_SUCCESS} from "../constants/configurationConstants";
 
 export interface GlobalInitialStateI {
     loading: boolean,
@@ -43,7 +42,7 @@ export const globalReducer = (state: GlobalInitialStateI = globalInitialState, a
                 ...state,
                 loading: false
             }
-        case GET_CFG_CATEGORY_COURSE_SUCCESS:
+        case ME_INFORMATIONS_SUCCESS:
             return {
                 ...state,
                 loading: false

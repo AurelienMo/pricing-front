@@ -7,10 +7,15 @@ import {
     userTryToLoginWithRefreshToken
 } from "../../store/actions/globalActions";
 import {store} from "../../store/store";
-import {GET_PROJECTS, GET_TARIFICATION_LEVELS} from "./endpoints";
+import {GET_PROJECTS, GET_TARIFICATION_LEVELS, ME_INFORMATIONS} from "./endpoints";
 import CfgTarification from "../../models/CfgTarification";
 import CfgCategoryCourse from "../../models/CfgCategoryCourse";
-import {onGetCoursesCfgSuccess, onGetTarificationsCfgSuccess} from "../../pages/LoginPage/actions";
+import {
+    onGetCoursesCfgSuccess,
+    onGetMeInformationsSuccess,
+    onGetTarificationsCfgSuccess
+} from "../../pages/LoginPage/actions";
+import MeModel from "../../models/MeModel";
 
 let subscribers: any = [];
 
@@ -56,12 +61,21 @@ export async function refreshTokenInterceptorError(error: AxiosError) {
                     }
                 }
             })
+            const me = await PricingApi.get({
+                url: ME_INFORMATIONS,
+                model: MeModel,
+                config: {
+                    headers: {
+                        Authorization: accessToken
+                    }
+                }
+            })
             store.store.dispatch(userLoggedWithRefreshToken(accessToken, refreshToken));
             store.store.dispatch(onGetTarificationsCfgSuccess(tarifications.data));
             store.store.dispatch(onGetCoursesCfgSuccess(courses.data));
+            store.store.dispatch(onGetMeInformationsSuccess(me.data));
 
             onAccessTokenFetched(accessToken);
-            console.log(retryOriginalRequest);
 
             return retryOriginalRequest;
         } catch (e) {

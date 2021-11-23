@@ -1,4 +1,4 @@
-import {LOGIN_ERROR, LOGIN_SUCCESS, SUBMIT_LOGIN} from "../../store/constants/globalConstants";
+import {LOGIN_ERROR, LOGIN_SUCCESS, ME_INFORMATIONS_SUCCESS, SUBMIT_LOGIN} from "../../store/constants/globalConstants";
 import AuthModel from "./AuthModel";
 import {
     GET_CFG_CATEGORY_COURSE_SUCCESS,
@@ -6,6 +6,7 @@ import {
 } from "../../store/constants/configurationConstants";
 import CfgTarification from "../../models/CfgTarification";
 import CfgCategoryCourse from "../../models/CfgCategoryCourse";
+import MeModel from "../../models/MeModel";
 
 export interface ModelAuthActionI {
     type: string,
@@ -48,5 +49,12 @@ export function onGetCoursesCfgSuccess(data: CfgCategoryCourse[]) {
     return {
         type: GET_CFG_CATEGORY_COURSE_SUCCESS,
         categories: data
+    }
+}
+
+export function onGetMeInformationsSuccess(data: MeModel) {
+    return {
+        type: ME_INFORMATIONS_SUCCESS,
+        me: data
     }
 }

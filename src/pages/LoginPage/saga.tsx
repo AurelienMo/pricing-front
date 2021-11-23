@@ -1,9 +1,9 @@
 import {takeEvery, call, put} from 'redux-saga/effects';
 import {SUBMIT_LOGIN} from "../../store/constants/globalConstants";
-import {GET_PROJECTS, GET_TARIFICATION_LEVELS, GET_TOKEN} from "../../libs/api/endpoints";
+import {GET_PROJECTS, GET_TARIFICATION_LEVELS, GET_TOKEN, ME_INFORMATIONS} from "../../libs/api/endpoints";
 import {
     ModelAuthActionI,
-    onGetCoursesCfgSuccess,
+    onGetCoursesCfgSuccess, onGetMeInformationsSuccess,
     onGetTarificationsCfgSuccess,
     onLoginError,
     onLoginSuccess
@@ -12,6 +12,7 @@ import {PricingApi} from "../../libs/api/PricingApi";
 import {DASHBOARD_PATH} from "../../navigations/routes/protectedRoutes";
 import CfgTarification from "../../models/CfgTarification";
 import CfgCategoryCourse from "../../models/CfgCategoryCourse";
+import MeModel from "../../models/MeModel";
 
 export default function* userSaga() {
     yield takeEvery(SUBMIT_LOGIN, getUserWhenLogin)
@@ -52,6 +53,7 @@ export function* getTarificationsCfg(token: string) {
         const {data} = yield call(PricingApi.get, options);
         yield put(onGetTarificationsCfgSuccess(data));
         yield getCfgProjects(token);
+        yield getMeInformations(token);
     } catch (err) {
         yield put(onLoginError('Une erreur a été rencontré lors de la synchronisation des informations'))
     }
@@ -70,6 +72,24 @@ export function* getCfgProjects(token: string) {
     try {
         const {data} = yield call(PricingApi.get, options);
         yield put(onGetCoursesCfgSuccess(data))
+    } catch (err) {
+        yield put(onLoginError('Une erreur a été rencontré lors de la synchronisation des informations'))
+    }
+}
+
+export function* getMeInformations(token: string) {
+    const options = {
+        url: ME_INFORMATIONS,
+        model: MeModel,
+        config: {
+            headers: {
+                Authorization: token
+            }
+        }
+    }
+    try {
+        const {data} = yield  call(PricingApi.get, options);
+        yield put(onGetMeInformationsSuccess(data));
     } catch (err) {
         yield put(onLoginError('Une erreur a été rencontré lors de la synchronisation des informations'))
     }
