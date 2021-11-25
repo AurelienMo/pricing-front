@@ -9,7 +9,7 @@
     "@material-ui/icons": "^4.11.2",
     "@material-ui/lab": "^4.0.0-alpha.60",
     "@material-ui/pickers": "^3.3.10",
-    "@mui/icons-material": "^5.1.1",
+    "@mui/icons-material": "^5.2.0",
     "@mui/material": "^5.1.0",
     "@rjsf/core": "^3.2.0",
     "@rjsf/material-ui": "^3.2.0",

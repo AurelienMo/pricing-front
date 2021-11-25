@@ -10,6 +10,14 @@ const makeSelectAuth = () => {
     )
 }
 
+const makeSelectMe = () => {
+    return createSelector(
+        selectUser,
+        (userState: UserInitialStateI) => userState.me
+    )
+}
+
 export {
-    makeSelectAuth
+    makeSelectAuth,
+    makeSelectMe
 }

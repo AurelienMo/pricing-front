@@ -1,4 +1,5 @@
 import {
+    ON_LOGOUT,
     SUBMIT_REFRESH_TOKEN,
     SUBMIT_REFRESH_TOKEN_ERROR,
     SUBMIT_REFRESH_TOKEN_SUCCESS,
@@ -29,4 +30,10 @@ export function userFailedLoggedWithRefreshToken() {
     return {
         type: SUBMIT_REFRESH_TOKEN_ERROR
     };
+}
+
+export function onLogout() {
+    return {
+        type: ON_LOGOUT
+    }
 }

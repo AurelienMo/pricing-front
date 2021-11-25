@@ -9,3 +9,5 @@ export const SUBMIT_REFRESH_TOKEN_SUCCESS = 'Pricing/User/SUBMIT_REFRESH_TOKEN_S
 export const SUBMIT_REFRESH_TOKEN_ERROR = 'Pricing/User/SUBMIT_REFRESH_TOKEN_ERROR';
 
 export const ME_INFORMATIONS_SUCCESS = 'Pricing/User/ME_INFORMATIONS_SUCCESS';
+
+export const ON_LOGOUT = 'Pricing/User/LOGOUT';

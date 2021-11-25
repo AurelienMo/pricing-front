@@ -1,7 +1,7 @@
 import AuthModel from "../../pages/LoginPage/AuthModel";
 import {
     LOGIN_SUCCESS,
-    ME_INFORMATIONS_SUCCESS,
+    ME_INFORMATIONS_SUCCESS, ON_LOGOUT,
     SUBMIT_REFRESH_TOKEN_ERROR,
     SUBMIT_REFRESH_TOKEN_SUCCESS
 } from "../constants/globalConstants";
@@ -37,6 +37,8 @@ export const userReducer = (state: UserInitialStateI = userInitialState, action:
                 ...state,
                 me: action.me
             }
+        case ON_LOGOUT:
+            return userInitialState;
     }
 
     return state;

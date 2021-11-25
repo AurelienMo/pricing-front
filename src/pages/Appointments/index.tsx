@@ -1,16 +1,16 @@
 import useAuth from "../../hooks/useAuth";
 import Navbar from "../../components/Navbar";
 
-const Dashboard = () => {
+const Appointments = () => {
     useAuth();
     return (
         <>
             <Navbar />
             <main>
-                <h2>Dashboard page</h2>
+                <h2>Liste de rendez-vous</h2>
             </main>
         </>
     )
 }
 
-export default Dashboard;
+export default Appointments;

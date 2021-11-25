@@ -1,8 +1,10 @@
 import {RouteI} from "../RouteI";
 import {Route} from "react-router-dom";
 import Dashboard from "../../pages/Dashboard";
+import Appointments from "../../pages/Appointments";
 
 export const DASHBOARD_PATH = '/dashboard';
+export const APPOINTMENTS = "/rendez-vous"
 
 const protectedRoutes: RouteI[] = [
     {
@@ -11,6 +13,12 @@ const protectedRoutes: RouteI[] = [
         element: <Dashboard />,
         name: 'dashboard'
     },
+    {
+        key: 'appointments',
+        path: APPOINTMENTS,
+        element: <Appointments />,
+        name: 'appointments'
+    }
 ]
 
 export const protectedRouter = protectedRoutes.map((route: RouteI) => {
